@@ -20,7 +20,7 @@ const credential = mongoose.model("credential",{},"bulkmail")
 
 
 
-app.post("/sendemail",function(req,res){
+app.post(`${URL}/sendemail`,function(req,res){
     const msg = req.body.message
     const email = req.body.emaillist
    
