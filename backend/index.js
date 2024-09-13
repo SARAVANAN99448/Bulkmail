@@ -2,14 +2,18 @@ const express = require("express")
 const cors = require("cors")
 const nodemailer = require("nodemailer")
 const mongoose = require("mongoose")
+const dotenv = require("dotenv").config()
 const app = express()
+ 
+const URL =process.env.VITE_API_URL
 
 // middleware
 app.use(express.json())
 app.use(cors())
 
 
-mongoose.connect("mongodb+srv://saro:9797@saro.t9tyq.mongodb.net/passkey?retryWrites=true&w=majority&appName=saro").then(()=>{console.log("Connected to DB")})
+
+mongoose.connect(URL).then(()=>{console.log("Connected to DB")})
 .catch(()=>{console.log("Failed to connect DB")})
 
 const credential = mongoose.model("credential",{},"bulkmail")
