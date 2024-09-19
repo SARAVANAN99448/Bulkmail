@@ -2,6 +2,8 @@ import { useState } from "react"
 import axios from "axios"
 import * as XLSX from "xlsx"
 
+const URL = import.meta.env.VITE_API_BACKEND
+
 const App = () => {
   const [message, setmessage] = useState("")
   const [status, setstatus] = useState(false)
@@ -11,7 +13,7 @@ const App = () => {
   }
   const send = () => {
     setstatus(true)
-    axios.post(import.meta.env.VITE_API_BACKEND, { message: message,emaillist:emaillist })
+    axios.post(`${URL}/sendemail`, { message: message,emaillist:emaillist })
       .then(function (data) {
         if (data.data === true) {
           setstatus(false)
